@@ -16,8 +16,27 @@
     <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
     <script>
 
-			ReactDOM.render('hello world', document.getElementById('root'));
+			// ReactDOM.render('hello world', document.getElementById('root'));
+			/*
+				核心库提供了React.createElement()，
+				创建一个React元素，称作虚拟DOM，本质上是一个对象
 
+				React.createElement()方法接受三个参数：
+				1. 一个字符串类型，表示要创建的元素的类型，如'div'、'span'等
+				2. 一个对象，表示该元素的属性，如{className: 'container'} 
+				3. 一个可选的数组，表示子元素，如['hello world']
+
+			*/ 
+
+			var span = React.createElement('span', {className: 'description'}, 'This is a paragraph.');
+
+			var h1 = React.createElement('h1', {className: 'title'}, 'hello world', span);
+
+			console.log(h1)
+			// ReactDOM.render()方法用来渲染React元素到页面上。
+
+			ReactDOM.render(h1, document.getElementById('root'));
+			
     </script>
 </body>
 
