@@ -1,55 +1,44 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import img1 from './asserts/1.jpg'
+import img2 from './asserts/2.jpg'
+import img3 from './asserts/3.jpg'
+import img4 from './asserts/4.jpg'
+import './index.css'
 
-// 每个JSX表达式，有且仅有一个根节点
-// var h1 = (<h1>Hello World <span>span元素</span></h1>)
-var h1 = (
-	<>
-		<h1>hello world</h1>
-		<p>p标签</p>
-	</>
-)
+const imgs = [img1, img2, img3, img4]
 
-// 每个JSX元素必须结束（XML规范）
-var img = (
-	<img src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png" alt="" />
-)
+let index = 0	
 
+let timer
 
-/*
+let container = document.getElementById('root')
 
-	在JSX中嵌入表达式
-	- 在JSX中使用注释
-	- 将表达式作为内容的一部分
-  	- null、undefined、false不会显示
-		- 普通对象，不可以作为子元素
-		- 可以放置React元素对象
-*/ 
-var a = 100 , b = 200
+function start() {
+	stop()
+	timer =	setInterval(() => {
+		index = (index + 1) % imgs.length
+		render()
+	}, 2000);
+}
 
-// var obj = {name: 'John', age: 30}
-var obj	= <h1>Hello World</h1>
+function render() {
+	ReactDOM.render(<img src={imgs[index]} alt='' />, container);
+}
 
-var div = ( 
-	<div>
-		{a} + {b} = {a+b}
-		{null}
-		{undefined}
-		{false}
-		{obj}
-
-	</div>
-)
+render()
+start()
 
 
-var src = 'https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png'
-var cls = "images"
-var img1 = (
-	<div>
-		<img src={src} className={cls} style={{
-			border: '1px solid red',
-		}} alt=""/>
-	</div>
-)
+function stop(){
+	clearInterval(timer)
+}
 
-ReactDOM.render(img1, document.getElementById('root'));
+
+container.onmouseenter = () => {
+	stop()
+}
+
+container.onmouseleave = () => {
+	start()
+}
