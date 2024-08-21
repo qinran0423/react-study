@@ -1,7 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import TickControl  from './components/TickControl/index.js'
+import Pager  from './components/Pager.js'
 
 ReactDOM.render(<div>
-	<TickControl/>
+	<Pager
+		current={12}
+		total={100}
+		limit={9}
+		panelNumber={5}
+	/>
 </div>, document.getElementById('root'));
