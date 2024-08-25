@@ -1,7 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './components/LifeCycle/App'
+import TransferEle from './components/TransferEle'
 
 ReactDOM.render(<div>
-	<App />
+	<TransferEle>
+		<h1>Hello World</h1>
+	</TransferEle>
 </div>, document.getElementById('root'));
