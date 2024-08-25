@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import TickControl  from './components/TickControl/index.js'
+import App from './components/LifeCycle/index'
 
 ReactDOM.render(<div>
-	<TickControl/>
+	<App />
 </div>, document.getElementById('root'));
