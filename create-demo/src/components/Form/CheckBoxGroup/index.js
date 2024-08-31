@@ -1,6 +1,21 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import types from '../../../utils/commonTypes'
 
 export default class CheckBoxGroup extends Component {
+	static defaultProps = {
+		datas: [],
+		chooseDatas: [],
+	}
+
+	static propTypes = {
+		datas: types.groupDatas.isRequired,
+		chooseDatas: types.chooseDatas,
+		name: PropTypes.string.isRequired,
+		onChange: PropTypes.func,
+	}
+
+
 
 	handleChange = e => {
 		let newarr = []
