@@ -1,8 +1,9 @@
 import React, { Component } from "react"
-import Input from './components/Form/Input'
-import NumberInput from './components/Form/NumberInput'
-import CheckBox from './components/Form/CheckBox'
-import FormTest from './components/Form/FormTest'
+import Input from './components/FormDemo/Input'
+import NumberInput from './components/FormDemo/NumberInput'
+import CheckBox from './components/FormDemo/CheckBox'
+import FormTest from './components/FormDemo/FormTest'
+import Test from './components/Form/Select/Test'
 
 export default class App extends Component {
 	render() {
@@ -11,7 +12,7 @@ export default class App extends Component {
 				{/* <Input /> */}
 				{/* <NumberInput /> */}
 				{/* <CheckBox /> */}
-				<FormTest />
+				<Test />
 			</div>
 		)
 	}
