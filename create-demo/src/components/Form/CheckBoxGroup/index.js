@@ -1,56 +1,44 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import types from '../../../utils/commonTypes'
+import withDataGroup from '../hoc/withDataGroup'
 
-export default class CheckBoxGroup extends Component {
-	static defaultProps = {
-		datas: [],
-		chooseDatas: [],
-	}
-
+class CkeckBox extends Component {
 	static propTypes = {
-		datas: types.groupDatas.isRequired,
-		chooseDatas: types.chooseDatas,
 		name: PropTypes.string.isRequired,
+		info: types.singleData.isRequired,
 		onChange: PropTypes.func,
+		chooseDatas: types.chooseDatas,
 	}
-
-
 
 	handleChange = e => {
-		let newarr = []
+		let newArr;
 		if (e.target.checked) {
-			newarr = [...this.props.chooseDatas, e.target.value]
-		} else {
-			newarr = this.props.chooseDatas.filter(item => item !== e.target.value)
+			newArr = [...this.props.chooseDatas, e.target.value];
 		}
-
-		this.props.onChange && this.props.onChange(newarr)
-	}
-
-
-	getCheckboxes(e) {
-		return this.props.datas.map(it => (
-			<label key={it.value}>
-				<input
-					type="checkbox"
-					name={this.props.name}
-					value={it.value}
-					checked={this.props.chooseDatas.includes(it.value)}
-					onChange={e => {
-						this.handleChange(e)
-					}} />
-				{it.name}
-			</label>
-		))
+		else {
+			newArr = this.props.chooseDatas.filter(it => it !== e.target.value);
+		}
+		this.props.onChange && this.props.onChange(newArr);
 	}
 
 	render() {
-		const bs = this.getCheckboxes()
 		return (
-			<div>
-				{bs}
-			</div>
+			<label>
+				<input
+					type="checkbox"
+					name={this.props.name}
+					value={this.props.info.value}
+					checked={this.props.chooseDatas.includes(this.props.info.value)}
+					onChange={e => {
+						this.handleChange(e)
+					}} />
+				{this.props.info.name}
+			</label>
 		)
 	}
 }
+
+
+
+export default withDataGroup(CkeckBox)
