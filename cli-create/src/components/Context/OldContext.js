@@ -6,20 +6,41 @@ const types = {
 	onChange: PropTypes.func,
 }
 
-function ChildA(props) {
-	return (
-		<div>
-			<h1>ChildA</h1>
-			<ChildB />
-		</div>
-	)
+class ChildA extends Component {
+	static contextTypes = types;
+
+	static childContextTypes = {
+		a: PropTypes.number,
+		c: PropTypes.string,
+	}
+
+
+	getChildContext() {
+		return {
+			a: 333,
+			c: 'world',
+		}
+	}
+
+	render() {
+		return (
+			<div>
+				<h1>ChildA</h1>
+				<h2>a:{this.context.a}，b:{this.context.b}</h2>
+				<ChildB />
+			</div>
+		)
+	}
 }
 
 
 
 class ChildB extends Component {
 
-	static contextTypes = types
+	static contextTypes = {
+		...types,
+		c: PropTypes.string,
+	}
 
 	render() {
 		console.log(this.context)
@@ -28,7 +49,7 @@ class ChildB extends Component {
 				ChildB
 				a: {this.context.a}
 				b: {this.context.b}
-
+				c: {this.context.c}
 				<button onClick={() => {
 					this.context.onChange(this.context.a + 2)
 				}}>子组件的按钮，a+2</button>

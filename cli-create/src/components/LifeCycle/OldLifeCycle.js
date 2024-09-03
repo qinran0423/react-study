@@ -9,8 +9,11 @@ export default class OldLifeCycle extends Component {
 		console.log('一个新的组件诞生了')
 	}
 
-	componentWillMount() {
+	UNSAFE_componentWillMount() {
 		console.log('componentWillMount 即将挂载')
+		this.setState({
+			n: 10
+		})
 	}
 
 	componentDidMount() {
