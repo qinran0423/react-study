@@ -10,6 +10,7 @@ export default class TaskList extends Component {
 		})).isRequired,
 	}
 	render() {
+		console.log('TaskList Render')
 		const ts = this.props.tasks.map((it, i) => <Task
 			key={i}
 			{...it}
