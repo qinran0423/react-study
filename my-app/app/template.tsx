@@ -1,8 +1,9 @@
-"use client";
+'use client'
 import Link from "next/link"
+import { useRouter }  from 'next/navigation'
 
-export default function Template({ children, router }: { children: React.ReactNode, router: any }) {
-  console.log(router)
+export default function Template({ children }: { children: React.ReactNode }) {
+  const router = useRouter()
   return (
     <div>
       <ul className="flex text-neutral-50">
@@ -16,9 +17,9 @@ export default function Template({ children, router }: { children: React.ReactNo
           <Link href="/movies">电影</Link>
         </li>
 				<li className="mx-4">
-          <Link href="/movies/4">电影详情</Link>
+          <Link href="/movies/4">详情</Link>
         </li>
-				<button onClick={() => router?.push("/movies/[...params]", "/movies/a/b/c/d")}>跳转到 【...params】</button>
+				<button onClick={() => router.push('/movies/a/b/c/d')}>跳转到 【...params】</button>
       </ul>
       {children}
     </div>
