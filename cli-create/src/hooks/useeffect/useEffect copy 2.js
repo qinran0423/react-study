@@ -1,4 +1,4 @@
-import React, { createRef, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 const ref = React.createRef()
 window.timer = null
 
@@ -24,7 +24,7 @@ function MoveBall(props) {
 			}
 		}, 10)
 		return stop
-	}, [props.left, props.top])
+	})
 
 	return (
 		<div ref={ref} style={{
@@ -42,23 +42,23 @@ function MoveBall(props) {
 
 
 export default function TestUseEffect() {
-	const [point, setPoint] = useState({ x: 100, y: 100 })
-	const InpX = createRef()
-	const InpY = createRef()
+	const [point, setPoint] = useState({ x: 0, y: 0 })
 	const [visible, setVisible] = useState(true)
 	return (
 		<div style={{
 			paddingTop: 200
 		}}>
 			{visible && (<div>
-				x: <input ref={InpX} type="number" />
-				y: <input ref={InpY} type="number" />
-				<button onClick={() => {
+				x: <input type="number" value={point.x} onChange={(e) => {
 					setPoint({
-						x: parseInt(InpX.current.value),
-						y: parseInt(InpY.current.value)
+						...point,
+						x: parseInt(e.target.value)
 					})
-				}}>move</button>
+				}} />
+				y: <input type="number" value={point.y} onChange={(e) => {
+					setPoint({ x: point.x, y: parseInt(e.target.value) })
+				}} />
+
 				<MoveBall left={point.x} top={point.y} />
 			</div>)}
 
