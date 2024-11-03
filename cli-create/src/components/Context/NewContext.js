@@ -27,16 +27,49 @@ class ChildB extends Component {
 	}
 
 	render() {
+		console.log(this.context)
 		console.log('childB  render ')
+		// return (
+		// 	<h1>
+		// 		a: {this.context.a}
+		// 		b: {this.context.b}
+		// 	</h1>
+		// )
+
 		return (
-			<h1>
-				a: {this.context.a}
-				b: {this.context.b}
-			</h1>
+			<ctx.Consumer>
+				{value => {
+					console.log(value)
+					return (
+						<p>
+							a: {value.a}
+							b: {value.b}
+						</p>
+					)
+				}}
+			</ctx.Consumer>
 		)
 	}
 
 }
+
+
+function ChildComp(props) {
+	return (
+		<ctx.Consumer>
+			{value => {
+				return (
+					<div>
+						a: {value.a}
+						b: {value.b}
+					</div>
+				)
+			}}
+		</ctx.Consumer>
+	)
+}
+
+
 
 
 
@@ -63,11 +96,7 @@ export default class NewContext extends Component {
 			<ctx.Provider value={this.state.ctx}>
 				<div>
 					NewContext: {this.state.a}
-					<ChildB {...this.state} />
-					<button onClick={() => {
-						this.setState({
-						})
-					}}>a +1</button>
+					<ChildComp {...this.state} />
 				</div>
 			</ctx.Provider>
 		)
